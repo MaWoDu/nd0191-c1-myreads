@@ -1,8 +1,8 @@
 
-export const Header = () => {
+export const Header = ({breadcrumb}) => {
     return (
         <div className="list-books-title">
-            <h1>MyReads</h1>
+            <h1>{breadcrumb}</h1>
         </div>
     )
 }

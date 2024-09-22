@@ -15,10 +15,11 @@ function App() {
     <div className="app">
       {showSearchPage ? (
         <div className="search-books">
+          <Header breadcrumb={"Global Library"}/>
           <div className="search-books-bar">
             <a
               className="close-search"
-              onClick={() => setShowSearchpage(!showSearchPage)}
+              onClick={() => togglePages()}
             >
               Close
             </a>
@@ -35,7 +36,7 @@ function App() {
         </div>
       ) : (
         <div className="list-books">
-          <Header />
+          <Header breadcrumb={"Personal Library"}/>
           <Bookshelves />
           <LibraryNavigator onClickAction={() => togglePages()}/>
         </div>
