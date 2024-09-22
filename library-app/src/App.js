@@ -2,9 +2,14 @@ import "./App.css";
 import { useState } from "react";
 import {Bookshelves} from "./components/Bookshelves/Bookshelves";
 import {Header} from "./components/Header/Header";
+import {LibraryNavigator} from "./components/LibraryNavigator/LibraryNavigator";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
+
+  const togglePages = () => {
+    return setShowSearchpage(!showSearchPage)
+  }
 
   return (
     <div className="app">
@@ -32,9 +37,7 @@ function App() {
         <div className="list-books">
           <Header />
           <Bookshelves />
-          <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-          </div>
+          <LibraryNavigator onClickAction={() => togglePages()}/>
         </div>
       )}
     </div>
