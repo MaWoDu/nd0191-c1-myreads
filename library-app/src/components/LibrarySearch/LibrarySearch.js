@@ -1,12 +1,14 @@
-export const LibrarySearch = ({onCloseSearch}) => {
+import {Link} from "react-router-dom";
+
+export const LibrarySearch = ({linkToHome}) => {
     return (
         <div className="search-books-bar">
-            <a
+            <Link
                 className="close-search"
-                onClick={onCloseSearch}
+                to={linkToHome}
             >
                 Close
-            </a>
+            </Link>
             <div className="search-books-input-wrapper">
                 <input
                     type="text"

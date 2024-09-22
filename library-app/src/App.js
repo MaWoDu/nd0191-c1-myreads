@@ -1,22 +1,17 @@
 import "./App.css";
-import {useState} from "react";
+
 import {PersoalBookshelves} from "./pages/PersoalBookshelves";
 import {GlobalLibrary} from "./pages/GlobalLibrary";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
-    const [showSearchPage, setShowSearchpage] = useState(false);
-
-    const togglePages = () => {
-        return setShowSearchpage(!showSearchPage)
-    }
 
     return (
         <div className="app">
-            {showSearchPage ? (
-                <GlobalLibrary onNav={togglePages}/>
-            ) : (
-                <PersoalBookshelves onNav={togglePages}/>
-            )}
+            <Routes>
+                <Route path="/" element={<PersoalBookshelves linkToSearch={"/search"}/>}/>
+                <Route path="/search" element={<GlobalLibrary linkToHome={"/"}/>}/>
+            </Routes>
         </div>
     );
 }
