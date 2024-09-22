@@ -1,1 +1,4 @@
-starter/node_modules
+library-app/node_modules
+library-app/.env
+
+.idea
