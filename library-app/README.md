@@ -4,6 +4,15 @@ This is the starter template for the final assessment project for Udacity's Reac
 
 Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to bootstrap the project.
 
+## Prerequisites
+
+Node version lower than 17. This is related to Node.js 17+ where the default OpenSSL behavior was updated to a more secure standard.
+If using nvm to manage node version simply:
+```bash
+nvm install 16
+nvm use 16
+```
+
 ## TL;DR
 
 To get started developing right away:
