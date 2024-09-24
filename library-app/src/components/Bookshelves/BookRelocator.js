@@ -8,7 +8,12 @@ export const BookRelocator = ({currentBookshelf}) =>
             </option>
             {categories.map(category => {
                 return (
-                    <option value={category.slug}>{category.label}</option>
+                    <option
+                        value={category.slug}
+                        key={category.slug}
+                    >
+                        {category.label}
+                    </option>
                 )
             })}
         </select>

@@ -56,6 +56,7 @@ export const Bookshelves = () => {
                     return (<Bookshelf
                         category={bookshelfCategory}
                         books={books}
+                        key={bookshelfCategory.slug}
                     />)
                 })}
 
