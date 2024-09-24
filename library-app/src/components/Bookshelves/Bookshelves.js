@@ -45,14 +45,19 @@ const books = [
     },
 ]
 
+const categories = ["Currently Reading", "Want to Read", "Read"]
+
 export const Bookshelves = () => {
     return (
         <div className="list-books-content">
             <div>
-                <Bookshelf
-                    category={"Currently Reading"}
-                    books={books}
-                />
+                {categories.map(bookshelfCategory => {
+                    return (<Bookshelf
+                        category={bookshelfCategory}
+                        books={books}
+                    />)
+                })}
+
             </div>
         </div>
     )
