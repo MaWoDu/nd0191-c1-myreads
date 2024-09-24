@@ -50,7 +50,9 @@ export const Bookshelves = () => {
     return (
         <div className="list-books-content">
             <div>
-                {categories.map(bookshelfCategory => {
+                {categories
+                    .filter(bookshelfCategory => bookshelfCategory.isVisible)
+                    .map(bookshelfCategory => {
                     return (<Bookshelf
                         category={bookshelfCategory}
                         books={books}
