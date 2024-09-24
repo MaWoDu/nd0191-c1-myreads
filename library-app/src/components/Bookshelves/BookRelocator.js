@@ -8,23 +8,8 @@ export const BookRelocator = ({currentBookshelf}) =>
             </option>
             {categories.map(category => {
                 return (
-                    <option value={toSlug(category)}>{category}</option>
+                    <option value={category.slug}>{category.label}</option>
                 )
             })}
         </select>
     </div>;
-
-function toSlug(str) {
-    return str
-        .replace(/[^a-zA-Z0-9 ]/g, '')
-        .trim()
-        .split(' ')
-        .map((word, index) => {
-            if (index === 0) {
-                return word.toLowerCase();
-            } else {
-                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-            }
-        })
-        .join('');
-}
