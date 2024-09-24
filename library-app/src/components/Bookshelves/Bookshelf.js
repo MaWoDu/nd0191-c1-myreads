@@ -12,6 +12,7 @@ export const Bookshelf = ({category, books}) => {
                             title={book.title}
                             authors={book.authors}
                             coverUrl={book.coverUrl}
+                            currentBookshelf={book.currentBookshelf}
                             key={book.title}
                         />)
                     }
