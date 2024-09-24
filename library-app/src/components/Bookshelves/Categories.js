@@ -1,22 +1,22 @@
 export const categories = [
     {
         label: "Currently Reading",
-        slug: toSlug(this.label),
+        slug: toSlug("Currently Reading"),
         isVisible: true
     },
     {
         label: "Want to Read",
-        slug: toSlug(this.label),
+        slug: toSlug("Want to Read"),
         isVisible: true
     },
     {
         label: "Read",
-        slug: toSlug(this.label),
+        slug: toSlug("Read"),
         isVisible: true
     },
     {
         label: "None",
-        slug: toSlug(this.label),
+        slug: toSlug("None"),
         isVisible: false
     }
 ]
