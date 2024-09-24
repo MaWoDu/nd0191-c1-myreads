@@ -3,7 +3,7 @@ import {categories} from "./Categories";
 export const BookRelocator = ({currentBookshelf}) =>
     <div className="book-shelf-changer">
         <select>
-            <option value="none" disabled>
+            <option disabled>
                 Move to...
             </option>
             {categories.map(category => {
