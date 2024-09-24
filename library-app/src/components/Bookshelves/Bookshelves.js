@@ -1,4 +1,5 @@
 import {Bookshelf} from "./Bookshelf";
+import {categories} from "./Categories";
 
 const books = [
     {
@@ -44,8 +45,6 @@ const books = [
         currentBookshelf: "Currently Reading"
     },
 ]
-
-const categories = ["Currently Reading", "Want to Read", "Read"]
 
 export const Bookshelves = () => {
     return (
