@@ -1,7 +1,8 @@
 import {Bookshelf} from "./Bookshelf";
 import {categories} from "./Categories";
+import {useState} from "react";
 
-const books = [
+const booksStub = [
     {
         title: "To Kill a Mockingbird",
         authors: "Harper Lee",
@@ -47,6 +48,7 @@ const books = [
 ]
 
 export const Bookshelves = () => {
+    const [books, setBooks] = useState(booksStub)
 
     const moveBook = (title, currentBookshelf, updatedBookshelf) => {
         console.log("move " + title + " from " + currentBookshelf + " to " + updatedBookshelf)
