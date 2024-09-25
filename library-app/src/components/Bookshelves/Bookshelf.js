@@ -1,6 +1,6 @@
 import {Book} from "./Book";
 
-export const Bookshelf = ({category, books}) => {
+export const Bookshelf = ({category, books, moveBook}) => {
     return <div className="bookshelf">
         <h2 className="bookshelf-title">{category.label}</h2>
         <div className="bookshelf-books">
@@ -13,6 +13,7 @@ export const Bookshelf = ({category, books}) => {
                             authors={book.authors}
                             coverUrl={book.coverUrl}
                             currentBookshelf={book.currentBookshelf}
+                            moveBook={moveBook}
                             key={book.title}
                         />)
                     }

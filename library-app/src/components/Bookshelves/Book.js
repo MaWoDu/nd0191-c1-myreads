@@ -1,8 +1,6 @@
 import {BookRelocator} from "./BookRelocator";
 
-export function Book({title, authors, coverUrl, currentBookshelf}) {
-    const moveBookCallback = (updatedCategory) =>
-        console.log(updatedCategory)
+export function Book({title, authors, coverUrl, currentBookshelf, moveBook}) {
 
     return <li>
         <div className="book">
@@ -17,7 +15,7 @@ export function Book({title, authors, coverUrl, currentBookshelf}) {
                 ></div>
                 <BookRelocator
                     currentBookshelf={currentBookshelf}
-                    moveBookCallback={moveBookCallback}
+                    moveBookCallback={moveBook}
                 />
             </div>
             <div className="book-title">{title}</div>

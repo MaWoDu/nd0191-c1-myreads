@@ -47,6 +47,10 @@ const books = [
 ]
 
 export const Bookshelves = () => {
+    const moveBookCallback = (updatedCategory) =>
+        console.log(updatedCategory)
+
+
     return (
         <div className="list-books-content">
             <div>
@@ -56,6 +60,7 @@ export const Bookshelves = () => {
                     return (<Bookshelf
                         category={bookshelfCategory}
                         books={books}
+                        moveBook={moveBookCallback}
                         key={bookshelfCategory.slug}
                     />)
                 })}
