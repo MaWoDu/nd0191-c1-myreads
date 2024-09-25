@@ -52,6 +52,10 @@ export const Bookshelves = () => {
 
     const moveBook = (title, currentBookshelf, updatedBookshelf) => {
         console.log("move " + title + " from " + currentBookshelf + " to " + updatedBookshelf)
+        const unchangedBooks = books.filter(b => b.title !== title)
+        const bookToUpdate = books.filter(b => b.title === title).at(0)
+        bookToUpdate.currentBookshelf = updatedBookshelf
+        setBooks([...unchangedBooks, bookToUpdate])
     }
 
     return (
