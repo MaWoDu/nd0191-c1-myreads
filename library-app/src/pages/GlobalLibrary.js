@@ -4,8 +4,6 @@ import {Library} from "../components/Library/Library";
 import debounce from "lodash.debounce";
 import {useCallback, useState} from "react";
 import {search, update} from "../BooksAPI";
-import {categories} from "../components/Bookshelves/Categories";
-import {Bookshelf} from "../components/Bookshelves/Bookshelf";
 
 export const GlobalLibrary = ({linkToHome}) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -47,6 +45,6 @@ export const GlobalLibrary = ({linkToHome}) => {
     return (<div className="search-books">
         <Header breadcrumb={"Global Library"}/>
         <LibrarySearch linkToHome={linkToHome} searchTerm={searchTerm} search={searchCallback}/>
-        { books ? <Library books={books} moveBook={moveBook}/> : "No Results" }
+        {  books && books.length > 0 ? <Library books={books} moveBook={moveBook}/> : <></> }
     </div>)
 }
