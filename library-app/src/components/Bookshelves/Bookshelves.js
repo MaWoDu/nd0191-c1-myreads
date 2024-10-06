@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {getAll, update} from "../../BooksAPI";
 
 export const Bookshelves = () => {
-    const [books, setBooks] = useState()
+    const [books, setBooks] = useState([])
 
     useEffect(async () => {
         let all = await getAll();
@@ -33,7 +33,7 @@ export const Bookshelves = () => {
                     .map(bookshelfCategory => {
                     return (<Bookshelf
                         category={bookshelfCategory}
-                        books={books}
+                        books={books.filter(book => book.shelf===bookshelfCategory.slug)}
                         moveBook={moveBook}
                         key={bookshelfCategory.slug}
                     />)
