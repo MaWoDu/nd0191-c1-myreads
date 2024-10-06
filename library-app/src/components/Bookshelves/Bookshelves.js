@@ -1,18 +1,7 @@
 import {Bookshelf} from "./Bookshelf";
 import {categories} from "./Categories";
-import {useEffect, useState} from "react";
-import {getAll} from "../../BooksAPI";
 
-export const Bookshelves = () => {
-    const [books, setBooks] = useState([])
-
-    useEffect(() => {
-        async function fetchData() {
-            return await getAll();
-        }
-
-        fetchData().then(booksResult => setBooks(booksResult))
-    }, []);
+export const Bookshelves = ({books, setBooksCallback}) => {
 
     if (!books) {
         return (<div>loading</div>)
@@ -26,7 +15,7 @@ export const Bookshelves = () => {
                         return (<Bookshelf
                             category={bookshelfCategory}
                             books={books.filter(book => book.shelf === bookshelfCategory.slug)}
-                            setBooksCallback={setBooks}
+                            setBooksCallback={setBooksCallback}
                             key={bookshelfCategory.slug}
                         />)
                     })}
