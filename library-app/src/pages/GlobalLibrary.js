@@ -18,8 +18,19 @@ export const GlobalLibrary = ({linkToHome}) => {
 
     const apiSearch = useCallback(
         debounce(async (searchTerm) => {
-            let searchResults = await search(searchTerm, 1); // fixme: maxResults value is ignored
-            setBooks(searchResults)
+            let searchResults = search(searchTerm, 1) // fixme: maxResults value is ignored
+                .then(result => {
+                    if (Array.isArray(result)) {
+                        setBooks(result);
+                    } else if (result && result.error) {
+                        console.error('Error response received:', result.error);
+                        setBooks([])
+                    } else {
+                        console.error('Unexpected response format:', result);
+                        setBooks([])
+                    }
+                })
+                .catch(error => setBooks([]))
         }, 300),
         []
     );
@@ -36,6 +47,6 @@ export const GlobalLibrary = ({linkToHome}) => {
     return (<div className="search-books">
         <Header breadcrumb={"Global Library"}/>
         <LibrarySearch linkToHome={linkToHome} searchTerm={searchTerm} search={searchCallback}/>
-        { books ? <Library books={books} moveBook={moveBook}/> : "" }
+        { books ? <Library books={books} moveBook={moveBook}/> : "No Results" }
     </div>)
 }
