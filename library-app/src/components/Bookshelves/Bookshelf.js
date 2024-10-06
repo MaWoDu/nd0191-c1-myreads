@@ -1,6 +1,6 @@
 import {Book} from "./Book";
 
-export const Bookshelf = ({category, books, moveBook}) => {
+export const Bookshelf = ({category, books, setBooksCallback}) => {
     return <div className="bookshelf">
         <h2 className="bookshelf-title">{category.label}</h2>
         <div className="bookshelf-books">
@@ -8,11 +8,8 @@ export const Bookshelf = ({category, books, moveBook}) => {
                 {books
                     .map((book, index) => {
                         return (<Book
-                            title={book.title}
-                            authors={book.authors}
-                            coverUrl={book.imageLinks.thumbnail}
-                            currentBookshelf={book.shelf}
-                            moveBook={moveBook}
+                            book={book}
+                            setBooksCallback={setBooksCallback}
                             key={book.title + "_" + index}
                         />)
                     })}

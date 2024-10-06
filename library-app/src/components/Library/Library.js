@@ -1,12 +1,12 @@
 import {Bookshelf} from "../Bookshelves/Bookshelf";
 
-export const Library = ({books, moveBook}) => {
+export const Library = ({books, setBooksCallback}) => {
     return (
         <div className="search-books-results">
             <Bookshelf
                 category={""}
                 books={books}
-                moveBook={moveBook}
+                setBooksCallback={setBooksCallback}
                 key={"library"}
             />
         </div>

@@ -1,10 +1,6 @@
 import {BookRelocator} from "./BookRelocator";
 
-export function Book({title, authors, coverUrl, currentBookshelf, moveBook}) {
-
-    const moveThisBook = (updatedBookshelf) => {
-        moveBook(title, currentBookshelf, updatedBookshelf)
-    }
+export function Book({book, setBooksCallback}) {
 
     return <li>
         <div className="book">
@@ -14,16 +10,17 @@ export function Book({title, authors, coverUrl, currentBookshelf, moveBook}) {
                     style={{
                         width: 128,
                         height: 193,
-                        backgroundImage: `url(${coverUrl})`,
+                        backgroundImage: `url(${book.imageLinks.thumbnail})`,
                     }}
                 ></div>
                 <BookRelocator
-                    currentBookshelf={currentBookshelf}
-                    moveBookCallback={moveThisBook}
+                    currentBookshelf={book.shelf}
+                    book={book}
+                    setBooksCallback={setBooksCallback}
                 />
             </div>
-            <div className="book-title">{title}</div>
-            <div className="book-authors">{authors}</div>
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
         </div>
     </li>;
 }

@@ -3,7 +3,7 @@ import {LibrarySearch} from "../components/LibrarySearch/LibrarySearch";
 import {Library} from "../components/Library/Library";
 import debounce from "lodash.debounce";
 import {useCallback, useState} from "react";
-import {search, update} from "../BooksAPI";
+import {search} from "../BooksAPI";
 
 export const GlobalLibrary = ({linkToHome}) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -33,18 +33,9 @@ export const GlobalLibrary = ({linkToHome}) => {
         []
     );
 
-    const moveBook = async (title, currentBookshelf, updatedBookshelf) => {
-        console.log("move " + title + " from " + currentBookshelf + " to " + updatedBookshelf)
-        const unchangedBooks = books.filter(b => b.title !== title)
-        const bookToUpdate = books.filter(b => b.title === title).at(0)
-        await update(bookToUpdate, updatedBookshelf)
-        bookToUpdate.shelf = updatedBookshelf
-        setBooks([...unchangedBooks, bookToUpdate])
-    }
-
     return (<div className="search-books">
         <Header breadcrumb={"Global Library"}/>
         <LibrarySearch linkToHome={linkToHome} searchTerm={searchTerm} search={searchCallback}/>
-        {  books && books.length > 0 ? <Library books={books} moveBook={moveBook}/> : <></> }
+        {  books && books.length > 0 ? <Library books={books} setBooksCallback={setBooks}/> : <></> }
     </div>)
 }
