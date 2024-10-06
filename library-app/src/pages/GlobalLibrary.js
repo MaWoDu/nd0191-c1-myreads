@@ -6,6 +6,7 @@ import {useCallback, useState} from "react";
 import {search} from "../BooksAPI";
 
 export const GlobalLibrary = ({linkToHome}) => {
+    // todo: If a book is assigned to a shelf on the main page and that book also appears on the search page, the correct shelf should be selected for that book on the search page.
     const [searchTerm, setSearchTerm] = useState("");
     const [books, setBooks] = useState([])
 
@@ -14,6 +15,7 @@ export const GlobalLibrary = ({linkToHome}) => {
         apiSearch(updatedSearchTerm)
     }
 
+    // todo: handle warning
     const apiSearch = useCallback(
         debounce(async (searchTerm) => {
             search(searchTerm, 1) // fixme: maxResults value is ignored

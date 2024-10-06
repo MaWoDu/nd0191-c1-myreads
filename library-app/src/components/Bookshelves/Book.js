@@ -1,7 +1,7 @@
 import {BookRelocator} from "./BookRelocator";
 
 export function Book({book, setBooksCallback}) {
-
+// todo: add edge case handling for missing properties
     return <li>
         <div className="book">
             <div className="book-top">
