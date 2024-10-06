@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-export const LibrarySearch = ({linkToHome}) => {
+export const LibrarySearch = ({linkToHome, search}) => {
     return (
         <div className="search-books-bar">
             <Link
@@ -9,10 +9,12 @@ export const LibrarySearch = ({linkToHome}) => {
             >
                 Close
             </Link>
+
             <div className="search-books-input-wrapper">
                 <input
                     type="text"
                     placeholder="Search by title, author, or ISBN"
+                    onChange={(t) => search(t.target.value)}
                 />
             </div>
         </div>
