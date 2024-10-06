@@ -1,4 +1,4 @@
-import {Book} from "./Book";
+import {Book} from "./Book/Book";
 
 export const Bookshelf = ({category, books, setBooksCallback}) => {
     return <div className="bookshelf">
