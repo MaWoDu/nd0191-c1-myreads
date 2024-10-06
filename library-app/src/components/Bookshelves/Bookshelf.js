@@ -6,13 +6,13 @@ export const Bookshelf = ({category, books, moveBook}) => {
         <div className="bookshelf-books">
             <ol className="books-grid">
                 {books
-                    .filter(book => book.currentBookshelf===category.label)
+                    .filter(book => book.shelf===category.slug)
                     .map(book => {
                         return (<Book
                             title={book.title}
                             authors={book.authors}
-                            coverUrl={book.coverUrl}
-                            currentBookshelf={book.currentBookshelf}
+                            coverUrl={book.imageLinks.thumbnail}
+                            currentBookshelf={book.shelf}
                             moveBook={moveBook}
                             key={book.title}
                         />)
