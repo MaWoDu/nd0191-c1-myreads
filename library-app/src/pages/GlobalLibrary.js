@@ -3,6 +3,7 @@ import {LibrarySearch} from "../components/LibrarySearch/LibrarySearch";
 import {Library} from "../components/Library/Library";
 import debounce from "lodash.debounce";
 import {useCallback, useState} from "react";
+import {search} from "../BooksAPI";
 
 export const GlobalLibrary = ({linkToHome}) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -13,8 +14,9 @@ export const GlobalLibrary = ({linkToHome}) => {
     }
 
     const apiSearch = useCallback(
-        debounce((searchTerm) => {
-            console.log("Search Term:", searchTerm);
+        debounce(async (searchTerm) => {
+            let searchResults = await search(searchTerm, 1); // fixme: maxResults value is ignored
+            console.log(searchResults);
         }, 300),
         []
     );
