@@ -32,7 +32,7 @@ export const GlobalLibrary = ({linkToHome}) => {
                 })
                 .catch(error => setBooks([]))
         }, 300),
-        [search, debounce]
+        [debounce]
     );
 
     return (<div className="search-books">
