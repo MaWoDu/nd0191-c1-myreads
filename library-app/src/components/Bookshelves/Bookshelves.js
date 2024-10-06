@@ -6,10 +6,15 @@ import {getAll, update} from "../../BooksAPI";
 export const Bookshelves = () => {
     const [books, setBooks] = useState([])
 
-    useEffect(async () => {
-        let all = await getAll();
-        console.log(all)
-        setBooks(all)
+    useEffect(() => {
+        async function fetchData() {
+            return await getAll();
+        }
+        fetchData().then(booksResult => setBooks(booksResult))
+    }, []);
+
+    useEffect( () => {
+
     }, []);
 
     const moveBook = async (title, currentBookshelf, updatedBookshelf) => {
