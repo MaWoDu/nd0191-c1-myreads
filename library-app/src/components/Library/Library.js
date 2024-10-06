@@ -1,7 +1,15 @@
-export const Library = () => {
+import {Bookshelf} from "../Bookshelves/Bookshelf";
+
+export const Library = ({books, moveBook}) => {
+    console.log(books, "-----")
     return (
         <div className="search-books-results">
-            <ol className="books-grid"></ol>
+            <Bookshelf
+                category={""}
+                books={books}
+                moveBook={moveBook}
+                key={"library"}
+            />
         </div>
     )
 }
