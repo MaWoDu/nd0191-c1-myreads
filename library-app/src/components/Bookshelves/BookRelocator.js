@@ -12,7 +12,7 @@ export const BookRelocator = ({currentBookshelf, moveBookCallback}) =>
             {categories.map(category => {
                 return (
                     <option
-                        value={category.label}
+                        value={category.slug}
                         key={category.slug}
                     >
                         {category.label}

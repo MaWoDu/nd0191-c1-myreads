@@ -1,7 +1,7 @@
 import {Bookshelf} from "./Bookshelf";
 import {categories} from "./Categories";
 import {useEffect, useState} from "react";
-import {getAll} from "../../BooksAPI";
+import {getAll, update} from "../../BooksAPI";
 
 export const Bookshelves = () => {
     const [books, setBooks] = useState()
@@ -12,10 +12,11 @@ export const Bookshelves = () => {
         setBooks(all)
     }, []);
 
-    const moveBook = (title, currentBookshelf, updatedBookshelf) => {
+    const moveBook = async (title, currentBookshelf, updatedBookshelf) => {
         console.log("move " + title + " from " + currentBookshelf + " to " + updatedBookshelf)
         const unchangedBooks = books.filter(b => b.title !== title)
         const bookToUpdate = books.filter(b => b.title === title).at(0)
+        await update(bookToUpdate, updatedBookshelf)
         bookToUpdate.shelf = updatedBookshelf
         setBooks([...unchangedBooks, bookToUpdate])
     }
