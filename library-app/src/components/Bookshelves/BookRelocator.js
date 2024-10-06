@@ -1,9 +1,10 @@
 import {categories} from "./Categories";
 
-export const BookRelocator = ({currentBookshelf, moveBookCallback}) =>
-    <div className="book-shelf-changer">
+export const BookRelocator = ({currentBookshelf, moveBookCallback}) => {
+    const NONE = categories[3];
+    return <div className="book-shelf-changer">
         <select
-            value={currentBookshelf}
+            value={currentBookshelf ? currentBookshelf : NONE.slug}
             onChange={(e) => moveBookCallback(e.target.value)}
         >
             <option disabled>
@@ -21,3 +22,4 @@ export const BookRelocator = ({currentBookshelf, moveBookCallback}) =>
             })}
         </select>
     </div>;
+};
