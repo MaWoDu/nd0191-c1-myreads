@@ -6,17 +6,16 @@ export const Bookshelf = ({category, books, moveBook}) => {
         <div className="bookshelf-books">
             <ol className="books-grid">
                 {books
-                    .map(book => {
-                            return (<Book
-                                title={book.title}
-                                authors={book.authors}
-                                coverUrl={book.imageLinks.thumbnail}
-                                currentBookshelf={book.shelf}
-                                moveBook={moveBook}
-                                key={book.title}
-                            />)
-                        }
-                    )}
+                    .map((book, index) => {
+                        return (<Book
+                            title={book.title}
+                            authors={book.authors}
+                            coverUrl={book.imageLinks.thumbnail}
+                            currentBookshelf={book.shelf}
+                            moveBook={moveBook}
+                            key={book.title + "_" + index}
+                        />)
+                    })}
             </ol>
         </div>
     </div>;
