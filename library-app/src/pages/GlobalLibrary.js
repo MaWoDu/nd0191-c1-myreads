@@ -16,7 +16,7 @@ export const GlobalLibrary = ({linkToHome}) => {
 
     const apiSearch = useCallback(
         debounce(async (searchTerm) => {
-            let searchResults = search(searchTerm, 1) // fixme: maxResults value is ignored
+            search(searchTerm, 1) // fixme: maxResults value is ignored
                 .then(result => {
                     if (Array.isArray(result)) {
                         setBooks(result);
@@ -30,7 +30,7 @@ export const GlobalLibrary = ({linkToHome}) => {
                 })
                 .catch(error => setBooks([]))
         }, 300),
-        []
+        [search, debounce]
     );
 
     return (<div className="search-books">
