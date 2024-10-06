@@ -28,7 +28,8 @@ function App() {
                 }/>
                 <Route path="/search" element={
                     <GlobalLibrary
-                        linkToHome={"/"}/>
+                        linkToHome={"/"}
+                        booksInPersonalLibrary={books}/>
                 }/>
             </Routes>
         </div>

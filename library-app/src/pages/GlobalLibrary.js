@@ -5,8 +5,7 @@ import debounce from "lodash.debounce";
 import {useCallback, useState} from "react";
 import {search} from "../BooksAPI";
 
-export const GlobalLibrary = ({linkToHome}) => {
-    // todo: If a book is assigned to a shelf on the main page and that book also appears on the search page, the correct shelf should be selected for that book on the search page.
+export const GlobalLibrary = ({linkToHome, booksInPersonalLibrary}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [books, setBooks] = useState([])
 
@@ -15,28 +14,33 @@ export const GlobalLibrary = ({linkToHome}) => {
         apiSearch(updatedSearchTerm)
     }
 
-    const apiSearch = useCallback(
-        (searchTerm) => {
-            const localDebounce = debounce(async (searchTerm) => {
-                search(searchTerm, 1) // fixme: maxResults value is ignored
-                    .then((result) => {
-                        if (Array.isArray(result)) {
-                            setBooks(result);
-                        } else if (result && result.error) {
-                            console.error('Error response received:', result.error);
-                            setBooks([]);
-                        } else {
-                            console.error('Unexpected response format:', result);
-                            setBooks([]);
-                        }
-                    })
-                    .catch((error) => setBooks([]));
-            }, 300);
+    const updateResultsAgainstPersonalLibrary = (foundBooks, booksInPersonalLibrary) => {
+        return foundBooks.map(foundBook => {
+            const matchingBook = booksInPersonalLibrary
+                .find(bookInPersonalLibrary => bookInPersonalLibrary.title === foundBook.title);
+            return matchingBook ? {...foundBook, shelf: matchingBook.shelf} : foundBook;
+        });
+    };
 
-            return localDebounce(searchTerm);
-        },
-        []
-    );
+    const apiSearch = useCallback((searchTerm) => {
+        const localDebounce = debounce(async (searchTerm) => {
+            search(searchTerm, 1) // fixme: maxResults value is ignored
+                .then((result) => {
+                    if (Array.isArray(result)) {
+                        setBooks(updateResultsAgainstPersonalLibrary(result, booksInPersonalLibrary));
+                    } else if (result && result.error) {
+                        console.error('Error response received:', result.error);
+                        setBooks([]);
+                    } else {
+                        console.error('Unexpected response format:', result);
+                        setBooks([]);
+                    }
+                })
+                .catch((error) => setBooks([]));
+        }, 300);
+
+        return localDebounce(searchTerm);
+    }, [booksInPersonalLibrary]);
 
     return (<div className="search-books">
         <Header breadcrumb={"Global Library"}/>
